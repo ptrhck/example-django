@@ -1,0 +1,36 @@
+[GLOBAL]
+pants_version = "2.11.0"
+
+backend_packages = [
+  "pants.backend.python",
+]
+
+[anonymous-telemetry]
+enabled = false
+
+
+[python]
+# We use a narrow interpreter constraint to ensure that Python PEX'es will be executable by our
+# selected Docker base image, `python:3.10`.
+interpreter_constraints = ["==3.9.*"]
+enable_resolves = true
+resolves = { python-default = "lockfiles/python-default.txt" }
+lockfile_generator = "pex"
+
+[source]
+root_patterns = [
+  "/django"
+]
+
+[pytest]
+lockfile = "lockfiles/pytest.txt"
+version = "pytest>=7.1.2,<7.2"
+extra_requirements.add = [
+  "pytest-django>=4,<5",
+]
+
+[python-infer]
+# Infer dependencies from strings that look like module/class names, such as are often
+# found in settings.py, where dependencies are enumerated as strings and not directly imported.
+string_imports = true
+string_imports_min_dots = 1
