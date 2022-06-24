@@ -34,6 +34,16 @@
         }
       },
       {
+        "label": "Test: Debug current",
+        "type": "shell",
+        "command": "./pants --debug test ${file}",
+        "group": "test",
+        "presentation": {
+          "reveal": "always",
+          "panel": "new"
+        }
+      },
+      {
         "label": "Format: Watch current",
         "type": "shell",
         "command": "./pants --loop fmt ${file}",

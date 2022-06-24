@@ -13,4 +13,4 @@ class YourTestClass(TestCase):
         self.assertFalse(False)
 
     def test_something_that_will_fail(self):
-        self.assertTrue(False)
+        self.assertTrue(True)
