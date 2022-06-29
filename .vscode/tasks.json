@@ -1,65 +1,86 @@
 {
-    // See https://go.microsoft.com/fwlink/?LinkId=733558
-    // for the documentation about the tasks.json format
-    "version": "2.0.0",
-    "tasks": [
-      {
-        "label": "Test: All",
-        "type": "shell",
-        "command": "./pants test ::",
-        "group": "test",
-        "presentation": {
-          "reveal": "always",
-          "panel": "new"
-        }
-      },
-      {
-        "label": "Test: Affected",
-        "type": "shell",
-        "command": "./pants --changed-since=HEAD --changed-dependees=transitive test",
-        "group": "test",
-        "presentation": {
-          "reveal": "always",
-          "panel": "new"
-        }
-      },
-      {
-        "label": "Test: Watch current",
-        "type": "shell",
-        "command": "./pants --loop test ${file}",
-        "group": "test",
-        "presentation": {
-          "reveal": "always",
-          "panel": "new"
-        }
-      },
-      {
-        "label": "Test: Debug current",
-        "type": "shell",
-        "command": "./pants --debug test ${file}",
-        "group": "test",
-        "presentation": {
-          "reveal": "always",
-          "panel": "new"
-        }
-      },
-      {
-        "label": "Format: Watch current",
-        "type": "shell",
-        "command": "./pants --loop fmt ${file}",
-        "presentation": {
-          "reveal": "always",
-          "panel": "new"
-        }
-      },
-      {
-        "label": "Lint: Watch current",
-        "type": "shell",
-        "command": "./pants --loop lint ${file}",
-        "presentation": {
-          "reveal": "always",
-          "panel": "new"
-        }
+  // See https://go.microsoft.com/fwlink/?LinkId=733558
+  // for the documentation about the tasks.json format
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Test: All",
+      "type": "shell",
+      "command": "./pants test ::",
+      "group": "test",
+      "presentation": {
+        "reveal": "always",
+        "panel": "new"
       }
-    ]
-  }
+    },
+    {
+      "label": "Test: Affected",
+      "type": "shell",
+      "command": "./pants --changed-since=HEAD --changed-dependees=transitive test",
+      "group": "test",
+      "presentation": {
+        "reveal": "always",
+        "panel": "new"
+      }
+    },
+    {
+      "label": "Test: Watch current",
+      "type": "shell",
+      "command": "./pants --loop test ${file}",
+      "group": "test",
+      "presentation": {
+        "reveal": "always",
+        "panel": "new"
+      }
+    },
+    {
+      "label": "_pants_test_runner",
+      "type": "shell",
+      "command": "./pants test --debug-adapter ${file}",
+      "group": "test",
+      // "presentation": {
+      //   "reveal": "always",
+      //   "panel": "new"
+      // },
+      "isBackground": true,
+      // // This task is run before some debug tasks.
+      // // Problem is, it's a watch script, and since it never exits, VSCode
+      // // complains. All this is needed so VSCode just lets it run.
+      // "problemMatcher": [
+      //   {
+      //     "pattern": [
+      //       {
+      //         "regexp": ".",
+      //         "file": 1,
+      //         "location": 2,
+      //         "message": 3
+      //       }
+      //     ],
+      //     "background": {
+      //       "activeOnStart": true,
+      //       "beginsPattern": "/^\\s*\\d{1,2}:\\d{1,2}:\\d{1,2}(?: AM| \\[PM\\])? Launching debug adapter\\, which will wait for a client connection\\.\\.\\./gm",
+      //       "endsPattern": ".",
+      //     }
+      //   }
+      // ]
+    },
+    {
+      "label": "Format: Watch current",
+      "type": "shell",
+      "command": "./pants --loop fmt ${file}",
+      "presentation": {
+        "reveal": "always",
+        "panel": "new"
+      }
+    },
+    {
+      "label": "Lint: Watch current",
+      "type": "shell",
+      "command": "./pants --loop lint ${file}",
+      "presentation": {
+        "reveal": "always",
+        "panel": "new"
+      }
+    }
+  ]
+}

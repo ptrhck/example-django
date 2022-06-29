@@ -12,7 +12,7 @@
 			"NODE_VERSION": "lts/*"
 		}
 	},
-
+	"containerEnv" : {"PANTS_SHA": "918ac2f68182a8d308113eff336f55dcdbc84847"},
 	// Configure tool-specific properties.
 	"customizations": {
 		// Configure properties specific to VS Code.
