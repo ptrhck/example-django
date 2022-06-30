@@ -6,5 +6,5 @@ pex_binary(
 )
 
 __defaults__({
-      (python_test): dict(dependencies=["django/mysite/settings.py"])
+      (python_tests): dict(dependencies=["django/mysite/settings.py"])
     })
